@@ -41,12 +41,18 @@ class queen8:      # stores the 8puzzle problem data
 
     def show(self):         # show the current state of the problem
         print(self.queens)
-    def showG(self):
+    def showG(self):        # show the current state of the problem (graphical)
         for i in range(8):
             s="";
+            spaces=["[ ]","{ }"]        # stands for black & white tiles
             for j in range(self.queens[i]):
-                s= s + " "
-            s=s+"#"
+                s= s + spaces[(j+i)%2]
+            if ((self.queens[i]+i)%2):
+                s=s+"{#}"
+            else:
+                s=s+"[#]"
+            for j in range(8-self.queens[i]):
+                s= s + spaces[(self.queens[i]-1+j+i)%2]
             print s
 
     def is_gurding(self,queen_pose,tile_pose):      # returns true if the queen in queen_pose gurds the tile_pose in board
@@ -81,6 +87,6 @@ m.scramble(30)
 m.show()
 """
 m=queen8()
-#m.showG()
+m.showG()
 # print m.isSolved()
 
