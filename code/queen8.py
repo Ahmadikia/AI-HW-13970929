@@ -13,7 +13,7 @@ class queen8:      # stores the 8puzzle problem data
 
         for i in range(8):
             self.queens[i]=i
-            
+
         """ START   <randomally change cols with each other to create a random board which has a queen in every row & col>    START   """
         for i in range(8):
             newcol=random.randint(0,7)
@@ -21,7 +21,7 @@ class queen8:      # stores the 8puzzle problem data
             temp=self.queens[i]
             self.queens[i]=self.queens[newcol]
             self.queens[newcol]=temp
-        """  END    <generating a random place to put the queen in col number i>     END    """
+        """  END    <randomally change cols with each other to create a random board which has a queen in every row & col>     END    """
 
         print ("class initiated")
 
