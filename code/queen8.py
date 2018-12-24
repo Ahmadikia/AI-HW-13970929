@@ -10,17 +10,18 @@ class queen8:      # stores the 8puzzle problem data
         we store the table with the array of queens number of rows
         """
         self.queens = [ None for j in range(8) ]
-        taken_rows=[ 0 for j in range(8) ]
-        counter=0;
+
         for i in range(8):
-            """ START   <generating a random place to put the queen in col number i>    START   """
-            newplace=random.randint(0,7)
-            while(not taken_rows[newplace]):    # ensures that the new queen will be set on an empty row
-                newplace=random.randint(0,7)
-                print newplace
-            taken_rows[newplace]=1;
-            self.queens[i]=newplace
-            """  END    <generating a random place to put the queen in col number i>     END    """
+            self.queens[i]=i
+            
+        """ START   <randomally change cols with each other to create a random board which has a queen in every row & col>    START   """
+        for i in range(8):
+            newcol=random.randint(0,7)
+                 # print newplace
+            temp=self.queens[i]
+            self.queens[i]=self.queens[newcol]
+            self.queens[newcol]=temp
+        """  END    <generating a random place to put the queen in col number i>     END    """
 
         print ("class initiated")
 
