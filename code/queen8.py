@@ -2,7 +2,7 @@ import random
 import string
 
 
-class queen8:      # stores the 8puzzle problem data
+class queen8:      # stores the 8queen problem data
 
     def __init__(self):
         """
@@ -28,6 +28,8 @@ class queen8:      # stores the 8puzzle problem data
 
 
     def setQueen(self,queen_number,new_row_number):     # set the position of the queen_number to new_row_number ( by switching the queen col with the other queen's col that have the same row number as new_row_number)
+        if self.queens[queen_number]==new_row_number:
+            return 1
         other_queen_number=-1;
         for i in range(8):  # find the other queen number
             if(self.queens[i]==new_row_number):
@@ -51,7 +53,7 @@ class queen8:      # stores the 8puzzle problem data
                 s=s+"{#}"
             else:
                 s=s+"[#]"
-            for j in range(8-self.queens[i]):
+            for j in range(8-self.queens[i]-1):
                 s= s + spaces[(self.queens[i]-1+j+i)%2]
             print s
 
@@ -67,26 +69,21 @@ class queen8:      # stores the 8puzzle problem data
     def number_of_invalid_queens(self):     # return the number of queens which gurd at least one queen
         result=0
         for i in range(8):
-           for i in range(8):
+           for j in range(8):
                if not(i==j):
                    if self.is_gurding( (i,self.queens[i]) , (j,self.queens[j]) ):
                        result = result+1
         return result
     def isSolved(self):
-        for i in range(8):
-            if not self.nums[int(i/3)][i%3]==i+1:
-                return 0
-        return 1
+        if self.number_of_invalid_queens()==0:
+            return 1
+        return 0
+
 
 # just to test class methods
-"""
-m=puzzle8()
-m.show()
-print m.isSolved()
-m.scramble(30)
-m.show()
-"""
 m=queen8()
 m.showG()
+m.show()
+print m.isSolved()
 # print m.isSolved()
 
